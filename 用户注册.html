@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/angular.min.js"></script>
+    <style>
+        .form-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        .form-group .text-danger {
+            position: absolute;
+        }
+        .error {
+            border-color: #a94442;
+        }
+    </style>
+    <script>
+        var testApp = angular.module('testApp',[]);
+
+        testApp.controller('testCtrl',['$scope',function($scope){
+            $scope.user ={
+                id : "",
+                psw : "",
+                pswConfirm : "",
+                email : "",
+                tel : ""
+            };
+
+            $scope.register = function(){
+                console.log($scope.user);
+            }
+        }]);
+
+    </script>
+</head>
+<body ng-controller="testCtrl">
+<div class="container">
+    <h1>用户注册</h1>
+    <form name="testForm" ng-submit="register()" required>
+        <div class="form-group">
+            <label>用户名：</label>
+            <input type="text" ng-class="{error : testForm.userName.$invalid && testForm.userName.$touched}" class="form-control" ng-model="user.id" name="userName" minlength="4" maxlength="8" placeholder="请输入用户名" required>
+            <p class="text-danger" ng-show="testForm.userName.$invalid && testForm.userName.$touched">用户名长度必须4~8个字符！</p>
+        </div>
+        <div class="form-group">
+            <label>密码：</label>
+            <input type="password" ng-class="{error : testForm.userPsw.$invalid && testForm.userPsw.$touched}" class="form-control" ng-model="user.psw" name="userPsw" minlength="6" maxlength="12" placeholder="请输入密码" required>
+            <p class="text-danger" ng-show="testForm.userPsw.$invalid && testForm.userPsw.$touched">密码长度必须6~12个字符！</p>
+        </div>
+        <div class="form-group">
+            <label>确认密码：</label>
+            <input type="password" ng-class="{error : user.psw != user.pswConfirm && testForm.userPswConfirm.$touched}" class="form-control" ng-model="user.pswConfirm" name="userPswConfirm" minlength="6" maxlength="12" placeholder="请确认密码" required>
+            <p class="text-danger" ng-show="user.psw != user.pswConfirm && testForm.userPswConfirm.$touched">两次密码输入不一致！</p>
+        </div>
+        <div class="form-group">
+            <label>Email地址：</label>
+            <input type="email" ng-class="{error : testForm.userEmail.$invalid && testForm.userEmail.$touched}" class="form-control" ng-model="user.email" name="userEmail" placeholder="请输入Email地址" required>
+            <p class="text-danger" ng-show="testForm.userEmail.$invalid && testForm.userEmail.$touched">Email格式错误！</p>
+        </div>
+        <div class="form-group">
+            <label>手机号码：</label>
+            <input type="number" ng-class="{error : testForm.userTel.$invalid && testForm.userTel.$touched}" class="form-control" ng-model="user.tel" name="userTel" minlength="11" maxlength="11" placeholder="请输入手机号码" required>
+            <p class="text-danger" ng-show="testForm.userTel.$invalid && testForm.userTel.$touched">手机号长度必须11个字符！</p>
+        </div>
+        <div class="form-group">
+            <input type="submit" ng-disabled="testForm.$invalid" class="btn btn-success" value="注册">
+            <input type="reset" class="btn btn-default" value="重置">
+        </div>
+    </form>
+</div>
+
+<hr>
+
+</body>
+</html>
