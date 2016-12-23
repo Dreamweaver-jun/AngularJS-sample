@@ -13,7 +13,7 @@
                 restrict : 'A',
                 template : '<ul><li>A</li><li>B</li></ul>',
                 replace : true,
-                link : function(scope,ele,attr){
+                link : function(scope,ele,attr,ctrl){
                     ele.on('click',function(){
                         alert('你点击了一下');
                     });

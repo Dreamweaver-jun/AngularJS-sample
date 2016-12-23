@@ -8,16 +8,12 @@
     <script>
         var myApp = angular.module('myApp',[]);
 
-        myApp.controller('myCtrl',function($scope){
-            $scope.text = '';
-        });
-
         myApp.directive('mydir',function(){                                     //命名不允许驼峰式与连接符'-'
             return {
                 restrict : 'A',
                 template : '<ul><li>A</li><li>B</li></ul>',
                 replace : true,
-                link : function(scope,ele,attr){
+                link : function(scope,ele){
                     ele.on('click',function(){
                         alert('你点击了一下');
                     });
@@ -28,6 +24,5 @@
 </head>
 <body style="padding: 60px;" ng-controller="myCtrl">
     <div mydir></div>
-    <input class="form-control" ng-model="text">
 </body>
 </html>
