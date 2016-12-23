@@ -32,6 +32,7 @@
     </script>
 </head>
 <body style="padding: 60px;" ng-controller="myCtrl">
+<h1 class="text-primary">购物车</h1>
     <div class="panel" ng-repeat="i in fruits">
         <p>{{i.name+'的单价是：'+ i.price}}</p>
         <input type="number" class="form-control" ng-model="i.quantity">
