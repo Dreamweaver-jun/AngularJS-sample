@@ -8,21 +8,45 @@
     <script>
         var myApp = angular.module('myApp',[]);
 
-        myApp.directive('mydir',function(){                                             //命名不允许大写、驼峰式与连接符'-'等
+        myApp.controller('myCtrl',function($scope){
+            $scope.loadData = function(){
+                console.log('正在加载数据！！');
+            }
+        });
+
+        myApp.controller('myCtrl2',function($scope){
+            $scope.loadData2 = function(){
+                console.log('正在加载数据222！！');
+            }
+        });
+
+        myApp.directive('hello',function(){                                             //命名不允许大写、驼峰式与连接符'-'等
             return {
-                restrict : 'A',
-                template : '<ul><li>A</li><li>B</li></ul>',
-                replace : true,
+                restrict : 'E',
+                transclude : true,
+                template : '<h1>这里是h1内容！<div ng-transclude></div></h1>',
+                replace : false,
                 link : function(scope,ele,attr,ctrl){
                     ele.on('click',function(){
-                        alert('你点击了一下');
+                        scope.$apply(attr.howtoload);
                     });
                 }
             }
-        })
+        });
+
     </script>
 </head>
 <body style="padding: 60px;">
-    <div mydir></div>
+<div ng-controller="myCtrl">
+    <hello howToLoad="loadData()">
+        <div>这是指令内部的内容</div>
+    </hello>
+</div>
+<hr>
+<div ng-controller="myCtrl2">
+    <hello howToLoad="loadData2()">
+        <div>这是指令内部的内容</div>
+    </hello>
+</div>
 </body>
 </html>
