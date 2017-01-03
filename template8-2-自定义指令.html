@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>自定义指令(多个控制器使用)</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/angular-1.3.0.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+
+        myApp.controller('myCtrl',function($scope){
+            $scope.loadData = function(){
+                console.log('正在加载数据！！');
+            }
+        });
+
+        myApp.controller('myCtrl2',function($scope){
+            $scope.loadData2 = function(){
+                console.log('正在加载数据22222！！');
+            }
+        });
+
+        myApp.directive('hello',function(){
+           return {
+               restrict : 'E',
+               link : function(scope,ele,attr,ctrl){
+                   ele.on('click',function(){
+                       scope.$apply(attr.howtoload);
+                   });
+               }
+           }
+        });
+
+    </script>
+</head>
+<body style="padding: 60px;">
+<div ng-controller="myCtrl">
+    <hello howtoload="loadData()"><div>这是指令内部的内容</div></hello>
+</div>
+<hr>
+<div ng-controller="myCtrl2">
+    <hello howtoload="loadData2()"><div>这是指令内部的内容</div></hello>
+</div>
+</body>
+</html>

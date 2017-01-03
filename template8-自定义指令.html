@@ -14,12 +14,6 @@
             }
         });
 
-        myApp.controller('myCtrl2',function($scope){
-            $scope.loadData2 = function(){
-                console.log('正在加载数据222！！');
-            }
-        });
-
         myApp.directive('hello',function(){                                             //命名不允许大写、驼峰式与连接符'-'等
             return {
                 restrict : 'E',
@@ -28,7 +22,7 @@
                 replace : false,
                 link : function(scope,ele,attr,ctrl){
                     ele.on('click',function(){
-                        scope.$apply(attr.howtoload);
+                        scope.loadData();
                     });
                 }
             }
@@ -38,15 +32,8 @@
 </head>
 <body style="padding: 60px;">
 <div ng-controller="myCtrl">
-    <hello howToLoad="loadData()">
-        <div>这是指令内部的内容</div>
-    </hello>
+    <hello><div>这是指令内部的内容</div></hello>
 </div>
 <hr>
-<div ng-controller="myCtrl2">
-    <hello howToLoad="loadData2()">
-        <div>这是指令内部的内容</div>
-    </hello>
-</div>
 </body>
 </html>
