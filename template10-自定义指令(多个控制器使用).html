@@ -25,7 +25,7 @@
                restrict : 'E',
                link : function(scope,ele,attr,ctrl){
                    ele.on('click',function(){
-                       scope.loadData();
+                       scope.$apply(attr.howtoload);
                    });
                }
            }
@@ -35,11 +35,11 @@
 </head>
 <body style="padding: 60px;">
 <div ng-controller="myCtrl">
-    <hello><div>这是指令内部的内容</div></hello>
+    <hello howToLoad="loadData()"><div>这是指令内部的内容</div></hello>
 </div>
 <hr>
 <div ng-controller="myCtrl2">
-    <hello><div>这是指令内部的内容</div></hello>
+    <hello howToLoad="loadData2()"><div>这是指令内部的内容</div></hello>
 </div>
 </body>
 </html>
