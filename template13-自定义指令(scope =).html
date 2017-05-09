@@ -18,6 +18,10 @@
                template : '<input type="text" class="form-control" ng-model="person">',
                scope : {
                    person : '='
+               },
+               link : function(s,e,a){
+                   console.log(s.person);               //拿到控制器里的‘小明’
+                   console.log(a.xiaoming);             //拿到person的属性值‘xiaoming’
                }
            }
         });

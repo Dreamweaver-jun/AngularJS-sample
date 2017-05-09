@@ -18,6 +18,9 @@
                template : '<div>{{person}}</div>',
                scope : {
                    person : '@'
+               },
+               link : function(s,e,a){
+                   console.log(a.person);
                }
            }
         });
